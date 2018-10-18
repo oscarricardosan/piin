@@ -16,11 +16,7 @@ function initializePage(){
         );
 
         nfc.addNdefListener(
-            function (nfcEvent) {
-                var tag = nfcEvent.tag;
-                alert('NDEF=> '+JSON.stringify(tag));
-                //navigator.notification.vibrate(100);
-            },
+            parseTag,
             function() {
                 alert("Listening for NDEF tags.");
             },
