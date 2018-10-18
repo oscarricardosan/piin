@@ -22,7 +22,7 @@ var Migrations= (function () {
     };
 
     function run_migration_0(){
-
+        alert('run_migration_0');
         var create_table= {
             settings: function(){
                 DB.transaction(function(transaction) {
@@ -52,6 +52,7 @@ var Migrations= (function () {
     }
 
     function runApp(){
+        alert('runApp');
         try{
             SettingsModel.get({
                 success: function(tx, results){
