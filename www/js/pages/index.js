@@ -88,7 +88,7 @@ function initializePage(){
                         alert("success");
                     },
                     function (reason) {
-                        alert("fail");
+                        alert("fail "+JSON.stringify(reason));
                     }
                 );
                 alert('termina esritura');
