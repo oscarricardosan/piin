@@ -131,7 +131,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="list-group">
-                                    <a href="#" :class="'list-group-item '+(tipo_multimedia_audio===undefined?'active':'')" @click.prevent="set_tipo_multimedia(undefined)">Multimedia por defecto</a>
+                                    <a href="#" :class="'list-group-item '+(tipo_multimedia===undefined?'active':'')" @click.prevent="set_tipo_multimedia(undefined)">Multimedia por defecto</a>
                                     <a href="#" :class="'list-group-item '+(tipo_multimedia_audio===tipo_multimedia?'active':'')" @click.prevent="set_tipo_multimedia(tipo_multimedia_audio)">Audio</a>
                                     <a href="#" :class="'list-group-item '+(tipo_multimedia_video===tipo_multimedia?'active':'')" @click.prevent="set_tipo_multimedia(tipo_multimedia_video)">Video</a>
                                     <a href="#" :class="'list-group-item '+(tipo_multimedia_mapa===tipo_multimedia?'active':'')" @click.prevent="set_tipo_multimedia(tipo_multimedia_mapa)">Mapa</a>
