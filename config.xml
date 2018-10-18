@@ -20,8 +20,8 @@
     </platform>
     <allow-navigation href="*" subdomains="true" />
     <allow-navigation href="*" />
+    <engine name="android" spec="^7.1.1" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-sqlite-evcore-extbuild-free" spec="0.9.8" />
-    <engine name="android" spec="^7.1.1" />
-    <plugin name="phonegap-nfc" spec="^1.0.3" />
+    <gap:plugin name="phonegap-nfc" source="npm" />
 </widget>
