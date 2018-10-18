@@ -70,26 +70,29 @@ function initializePage(){
     /** Ready on mobiles **/
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
-        nfc.addMimeTypeListener(
-            "text/plain",
-            parseTag,
-            function() {
-                alert("NFC, activo.");
-            },
-            function() {
-                alert("Fail. addMimeTypeListener");
-            }
-        );
 
-        function parseTag(nfcEvent) {
-            try {
-                var records = nfcEvent.tag.ndefMessage;
-                alert(records[0]);
+        (function listen_nfc_tags(){
+            nfc.addMimeTypeListener(
+                "text/plain",
+                function (nfcEvent){
+                    try {
+                        var contenido_tag_puro= nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload);
+                        var contenido_tag= contenido_tag_puro.substr(2, 80000);
+                        alert(contenido_tag);
+                    }catch (e) {
+                        alert(e);
+                    }
+                },
+                function() {
+                    alert("NFC, activo.");
+                },
+                function() {
+                    alert("Fail. addMimeTypeListener");
+                }
+            );
+        })();
 
-            }catch (e) {
-                alert(e);
-            }
-        }
+
 
     }
 }
