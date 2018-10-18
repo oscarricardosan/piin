@@ -3,18 +3,6 @@ function initializePage(){
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
 
-        nfc.addMimeTypeListener(
-            'text/plain',
-            parseTag,
-
-            function() {
-                alert("Success.");
-            },
-            function() {
-                alert("Fail.");
-            }
-        );
-
         nfc.addNdefListener(
             parseTag,
             function() {
@@ -26,8 +14,9 @@ function initializePage(){
         );
 
         function parseTag(nfcEvent) {
-            alert(JSON.stringify(nfcEvent))
-            alert(JSON.stringify(nfcEvent.tag))
+            alert('entre');
+            alert(JSON.stringify(nfcEvent));
+            alert(JSON.stringify(nfcEvent.tag));
 
                 var mimeType = "text/plain";
                 var payload = "super secret data";
