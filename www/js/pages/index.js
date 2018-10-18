@@ -2,6 +2,41 @@ var App;
 function initializePage(){
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
+
+        nfc.addMimeTypeListener(
+            'text/plain',
+            parseTag,
+
+            function() {
+                alert("Success.");
+            },
+            function() {
+                alert("Fail.");
+            }
+        );
+
+        nfc.addNdefListener(
+            function (nfcEvent) {
+                var tag = nfcEvent.tag;
+                alert('NDEF=> '+JSON.stringify(tag));
+                //navigator.notification.vibrate(100);
+            },
+            function() {
+                alert("Listening for NDEF tags.");
+            },
+            function(){
+                alert("Error al leer NDEF.");
+            }
+        );
+
+        function parseTag(nfcEvent) {
+            var records = nfcEvent.tagData;
+
+            for (var i = 0; i < records.length; i++) {
+                var record = records[i];
+                alert(record.payload);
+            }
+        }
     });
 
     App= new Vue({
@@ -59,35 +94,6 @@ function initializePage(){
                 App.number_search= code;
             }, function(){});
         });
-
-
-        nfc.addTagDiscoveredListener(
-            function (nfcEvent) {
-                var tag = nfcEvent.tag;
-                alert('NO NDEF=> '+JSON.stringify(tag));
-                //navigator.notification.vibrate(100);
-            },
-            function() {
-                alert("Listening for non-NDEF tags.");
-            },
-            function(){
-                alert("Error al leer NO-NDEF.");
-            }
-        );
-
-        nfc.addNdefListener(
-            function (nfcEvent) {
-                var tag = nfcEvent.tag;
-                alert('NDEF=> '+JSON.stringify(tag));
-                //navigator.notification.vibrate(100);
-            },
-            function() {
-                alert("Listening for NDEF tags.");
-            },
-            function(){
-                alert("Error al leer NDEF.");
-            }
-        );
 
 
 
