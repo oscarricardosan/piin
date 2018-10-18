@@ -86,11 +86,11 @@ function initializePage(){
                 },
                 function() {
                     App.tiene_nfc= true;
-                    App.tipo_lector= this.tipo_lector_nfc;
+                    App.tipo_lector= App.tipo_lector_nfc;
                 },
                 function() {
                     App.tiene_nfc= false;
-                    App.tipo_lector= this.tipo_lector_qr;
+                    App.tipo_lector= App.tipo_lector_qr;
                 }
             );
         })();
