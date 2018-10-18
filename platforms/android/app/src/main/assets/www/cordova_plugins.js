@@ -13,6 +13,14 @@ module.exports = [
     "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
     "pluginId": "phonegap-nfc",
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-qrscanner.QRScanner",
+    "file": "plugins/cordova-plugin-qrscanner/www/www.min.js",
+    "pluginId": "cordova-plugin-qrscanner",
+    "clobbers": [
+      "QRScanner"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -20,7 +28,8 @@ module.exports.metadata =
 {
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-sqlite-evcore-extbuild-free": "0.9.8",
-  "phonegap-nfc": "1.0.3"
+  "phonegap-nfc": "1.0.3",
+  "cordova-plugin-qrscanner": "2.6.0"
 };
 // BOTTOM OF METADATA
 });

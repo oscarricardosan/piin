@@ -15,6 +15,9 @@
     },
     "phonegap-nfc": {
       "PACKAGE_NAME": "savne.piin.lector"
+    },
+    "cordova-plugin-qrscanner": {
+      "PACKAGE_NAME": "savne.piin.lector"
     }
   },
   "dependent_plugins": {}
