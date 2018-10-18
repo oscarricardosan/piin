@@ -117,9 +117,10 @@ function initializePage(){
         function parseTag(nfcEvent) {
             try {
                 alert('inicia parsetag');
-                var records = nfcEvent.tagData;
+                var records = nfcEvent.tag.ndefMessage;
                 alert(JSON.stringify(nfcEvent));
-                alert(JSON.stringify(nfcEvent.tagData));
+                alert(JSON.stringify(nfcEvent.tag));
+                alert(JSON.stringify(nfcEvent.tag.ndefMessage));
                 for (var i = 0; i < records.length; i++) {
                     var record = records[i];
                     alert(nfc.bytesToString(record.payload));
