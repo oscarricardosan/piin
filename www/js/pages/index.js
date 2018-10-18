@@ -26,12 +26,22 @@ function initializePage(){
         );
 
         function parseTag(nfcEvent) {
-            var records = nfcEvent.tagData;
+            alert(JSON.stringify(nfcEvent))
+            alert(JSON.stringify(nfcEvent.tag))
 
-            for (var i = 0; i < records.length; i++) {
-                var record = records[i];
-                alert(record.payload);
-            }
+                var mimeType = "text/plain";
+                var payload = "super secret data";
+                var message = nfc.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
+
+                nfc.write(
+                    [message],
+                    function () {
+                        alert("success");
+                    },
+                    function (reason) {
+                        alert("fail");
+                    }
+                );
         }
     });
 
