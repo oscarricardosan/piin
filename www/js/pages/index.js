@@ -1,6 +1,5 @@
 var App;
 function initializePage(){
-    alert('initialize 1');
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
     });

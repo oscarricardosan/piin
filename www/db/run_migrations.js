@@ -54,11 +54,8 @@ var Migrations= (function () {
         try{
             SettingsModel.get({
                 success: function(tx, results){
-                    alert(0);
                     Settings.setSettings(results._first);
-                    alert(1);
                     initializePage();
-                    alert(2);
                 }
             });
         }catch (e){ alert('RunApp:  '+e.message); }
