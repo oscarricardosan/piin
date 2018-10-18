@@ -3,20 +3,13 @@ function initializePage(){
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
 
-        nfc.addNdefListener(
-            parseTag,
-            function() {
-                alert("Listening for NDEF tags.");
-            },
-            function(){
-                alert("Error al leer NDEF.");
-            }
-        );
 
-        function parseTag(nfcEvent) {
-            alert('entre');
-            alert(JSON.stringify(nfcEvent));
-            alert(JSON.stringify(nfcEvent.tag));
+        nfc.addTagDiscoveredListener(
+            function (nfcEvent) {
+                var tag = nfcEvent.tag;
+                alert(JSON.stringify(tag));
+                //navigator.notification.vibrate(100);
+
 
                 var mimeType = "text/plain";
                 var payload = "super secret data";
@@ -31,7 +24,14 @@ function initializePage(){
                         alert("fail");
                     }
                 );
-        }
+            },
+            function() {
+                alert("Listening for non-NDEF tags.");
+            },
+            function(){
+                alert("Error al leer FC.");
+            }
+        );
     });
 
     App= new Vue({
