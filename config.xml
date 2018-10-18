@@ -6,6 +6,9 @@
     <gap:platform name="android" />
     <preference name="orientation" value="portrait" />
     <preference name="fullscreen" value="true" />
+
+    <icon src="www/images/icon.png" />
+
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

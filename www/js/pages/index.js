@@ -41,7 +41,7 @@ function initializePage(){
 
             }
         },
-        watch: {
+        watch: {c
         },
         mounted: function(){
 
