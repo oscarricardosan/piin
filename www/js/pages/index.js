@@ -72,7 +72,7 @@ function initializePage(){
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
 
-        (function listen_nfc_tags(){
+        (function initialize_nfc_listen(){
             nfc.addMimeTypeListener(
                 "text/plain",
                 function (nfcEvent){
@@ -85,12 +85,12 @@ function initializePage(){
                     }
                 },
                 function() {
-                    this.tiene_nfc= true;
-                    this.tipo_lector= this.tipo_lector_nfc;
+                    App.tiene_nfc= true;
+                    App.tipo_lector= this.tipo_lector_nfc;
                 },
                 function() {
-                    this.tiene_nfc= false;
-                    this.tipo_lector= this.tipo_lector_qr;
+                    App.tiene_nfc= false;
+                    App.tipo_lector= this.tipo_lector_qr;
                 }
             );
         })();
