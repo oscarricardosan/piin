@@ -115,13 +115,20 @@ function initializePage(){
         );
 
         function parseTag(nfcEvent) {
-            alert('inicia parsetag');
-            var records = nfcEvent.tagData;
-            for (var i = 0; i < records.length; i++) {
-                var record = records[i];
-                alert(nfc.bytesToString(record.payload));
+            try {
+                alert('inicia parsetag');
+                var records = nfcEvent.tagData;
+                alert(JSON.stringify(nfcEvent));
+                alert(JSON.stringify(nfcEvent.tagData));
+                for (var i = 0; i < records.length; i++) {
+                    var record = records[i];
+                    alert(nfc.bytesToString(record.payload));
+                }
+                alert('termina parsetag');
+
+            }catch (e) {
+                alert(e);
             }
-            alert('termina parsetag');
         }
 
     }
