@@ -78,8 +78,11 @@ The initial iOS version plugin does not support scanning multiple tags (invalida
 ## Methods
 
 - [nfc.addNdefListener](#nfcaddndeflistener)
+- [nfc.removeNdefListener](#nfcremovendeflistener)
 - [nfc.addTagDiscoveredListener](#nfcaddtagdiscoveredlistener)
+- [nfc.removeTagDiscoveredListener](#nfcremovetagdiscoveredlistener)
 - [nfc.addMimeTypeListener](#nfcaddmimetypelistener)
+- [nfc.removeMimeTypeListener](#nfcremovemimetypelistener)
 - [nfc.addNdefFormatableListener](#nfcaddndefformatablelistener)
 - [nfc.write](#nfcwrite)
 - [nfc.makeReadOnly](#nfcmakereadonly)
@@ -93,17 +96,12 @@ The initial iOS version plugin does not support scanning multiple tags (invalida
 - [nfc.beginSession](#nfcbeginsession)
 - [nfc.invalidateSession](#nfcinvalidatesession)
 
-## ReaderMode
-
-- [nfc.readerMode](#nfcreadermode)
-- [nfc.disableReaderMode](#nfcdisablereadermode)
-
 ## Tag Technology Functions
 
 - [nfc.connect](#nfcconnect)
 - [nfc.transceive](#nfctransceive)
 - [nfc.close](#nfcclose)
-- [ISO-DEP example](#tag-technology-functions-1)
+- [ISO-DEP example](#tag-technology-functions)
 
 ## nfc.addNdefListener
 
@@ -143,8 +141,6 @@ On iOS you must call [beingSession](#nfcbeginsession) before scanning a tag.
 Removes the previously registered event listener for NDEF tags added via `nfc.addNdefListener`.
 
     nfc.removeNdefListener(callback, [onSuccess], [onFailure]);
-
-Removing listeners is not recommended. Instead, consider that your callback can ignore messages you no longer need.
 
 ### Parameters
 
@@ -190,8 +186,6 @@ Note that Windows Phones need the newere NXP PN427 chipset to read non-NDEF tags
 Removes the previously registered event listener added via `nfc.addTagDiscoveredListener`.
 
     nfc.removeTagDiscoveredListener(callback, [onSuccess], [onFailure]);
-
-Removing listeners is not recommended. Instead, consider that your callback can ignore messages you no longer need.
 
 ### Parameters
 
@@ -241,8 +235,6 @@ On Android, MIME types for filtering should always be lower case. (See [IntentFi
 Removes the previously registered event listener added via `nfc.addMimeTypeListener`.
 
     nfc.removeMimeTypeListener(mimeType, callback, [onSuccess], [onFailure]);
-
-Removing listeners is not recommended. Instead, consider that your callback can ignore messages you no longer need.
 
 ### Parameters
 
@@ -589,86 +581,9 @@ Function `invalidateSession` stops the [NFCNDEFReaderSession](https://developer.
 
 - iOS
 
-# Reader Mode Functions
-
-## nfc.readerMode
-
-Read NFC tags sending the tag data to the success callback.
-
-    nfc.readerMode(flags, readCallback, errorCallback);
-
-### Description
-
-In reader mode, when a NFC tags is read, the results are returned to read callback as a tag object. Note that the normal event listeners are *not* used in reader mode. The callback receives the tag object *without* the event wrapper.
-
-    {
-        "isWritable": true,
-        "id": [4, 96, 117, 74, -17, 34, -128],
-        "techTypes": ["android.nfc.tech.IsoDep", "android.nfc.tech.NfcA", "android.nfc.tech.Ndef"],
-        "type": "NFC Forum Type 4",
-        "canMakeReadOnly": false,
-        "maxSize": 2046,
-        "ndefMessage": [{
-            "id": [],
-            "type": [116, 101, 120, 116, 47, 112, 103],
-            "payload": [72, 101, 108, 108, 111, 32, 80, 104, 111, 110, 101, 71, 97, 112],
-            "tnf": 2
-        }]
-    }
-
-Foreground dispatching and peer-to-peer functions are disabled when reader mode is enabled.
-
-The flags control which tags are scanned. One benefit to reader mode, is the system sounds can be disabled when a NFC tag is scanned by adding the nfc.FLAG_READER_NO_PLATFORM_SOUNDS flag. See Android's [NfcAdapter.enableReaderMode()](https://developer.android.com/reference/android/nfc/NfcAdapter#enableReaderMode(android.app.Activity,%20android.nfc.NfcAdapter.ReaderCallback,%20int,%20android.os.Bundle)) documentation for more info on the flags.
-
-
-### Parameters
-
-- __flags__:  Flags indicating poll technologies and other optional parameters
-- __readCallback__: The callback that is called when a NFC tag is scanned.
-- __errorCallback__: The callback that is called when NFC is disabled or missing.
-
-### Quick Example
-
-    nfc.readerMode(
-        nfc.FLAG_READER_NFC_A | nfc.FLAG_READER_NO_PLATFORM_SOUNDS, 
-        nfcTag => console.log(JSON.stringify(nfcTag)),
-        error => console.log('NFC reader mode failed', error)
-    );
-
-### Supported Platforms
-
-- Android
-
-## nfc.disableReaderMode
-
-Disable NFC reader mode.
-
-    nfc.disableNfcReaderMode(successCallback, errorCallback);
-
-### Description
-
-Disable NFC reader mode.
-
-### Parameters
-
-- __successCallback__: The callback that is called when a NFC reader mode is disabled.
-- __errorCallback__: The callback that is called when NFC reader mode can not be disabled.
-
-### Quick Example
-
-    nfc.disableReaderMode(
-        () => console.log('NFC reader mode disabled'),
-        error => console.log('Error disabling NFC reader mode', error)
-    )
-
-### Supported Platforms
-
-- Android
-
-
 # Tag Technology Functions
 
-The tag technology functions provide access to I/O operations on a tag. Connect to a tag, send commands with transceive, close the tag. See the [Android TagTechnology](https://developer.android.com/reference/android/nfc/tech/TagTechnology) and implementations like [IsoDep](https://developer.android.com/reference/android/nfc/tech/IsoDep) and [NfcV](https://developer.android.com/reference/android/nfc/tech/NfcV) for more details. These new APIs are promise based rather than using callbacks.
+The tag technology functions provide access to I/O operations on a tag. Connect to a tag, send commands with tranceive, close the tag. See the [Android TagTechnology](https://developer.android.com/reference/android/nfc/tech/TagTechnology) and implementations like [IsoDep](https://developer.android.com/reference/android/nfc/tech/IsoDep) and [NfcV](https://developer.android.com/reference/android/nfc/tech/NfcV) for more details. These new APIs are promise based rather than using callbacks.
 
 #### ISO-DEP (ISO 14443-4) Example
 
@@ -1108,7 +1023,7 @@ Create a new project
     cordova platform add android
     cordova plugin add ../phonegap-nfc
     cordova plugin add ../phonegap-nfc/tests
-    cordova plugin add https://github.com/apache/cordova-plugin-test-framework.git
+    cordova plugin add http://git-wip-us.apache.org/repos/asf/cordova-plugin-test-framework.git
 
 Change the start page in `config.xml`
 

@@ -1,27 +1,24 @@
 {
-  "_from": "phonegap-nfc",
-  "_id": "phonegap-nfc@1.0.3",
+  "_from": "git+https://github.com/chariotsolutions/phonegap-nfc.git#1.0.0",
+  "_id": "phonegap-nfc@1.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-z2Usir2k8lNuvx6ITq8Xklu1HblzXkyfANc6Vx/liDGB1Az1lyu39qfEuRhQfjX2zSR2tcvsJ5z8yZQZaQ+MWw==",
+  "_integrity": "sha1-i/ZuXsDEYV3PQLifgchT4SIPAmA=",
   "_location": "/phonegap-nfc",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "phonegap-nfc",
-    "name": "phonegap-nfc",
-    "escapedName": "phonegap-nfc",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+    "type": "git",
+    "raw": "https://github.com/chariotsolutions/phonegap-nfc#1.0.0",
+    "rawSpec": "https://github.com/chariotsolutions/phonegap-nfc#1.0.0",
+    "saveSpec": "git+https://github.com/chariotsolutions/phonegap-nfc.git#1.0.0",
+    "fetchSpec": "https://github.com/chariotsolutions/phonegap-nfc.git",
+    "gitCommittish": "1.0.0"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/phonegap-nfc/-/phonegap-nfc-1.0.3.tgz",
-  "_shasum": "6fe1baeba2e075b6352e1080601cf5f2db7de8f8",
-  "_spec": "phonegap-nfc",
+  "_resolved": "git+https://github.com/chariotsolutions/phonegap-nfc.git#83c7ade7f74abb87453f69d6e04815ad0dbf1d7e",
+  "_spec": "https://github.com/chariotsolutions/phonegap-nfc#1.0.0",
   "_where": "/home/savne-developer-1/Desarrollos/Phonegap/piin",
   "author": {
     "name": "Don Coleman",
@@ -61,5 +58,5 @@
     "type": "git",
     "url": "git+https://github.com/chariotsolutions/phonegap-nfc.git"
   },
-  "version": "1.0.3"
+  "version": "1.0.0"
 }

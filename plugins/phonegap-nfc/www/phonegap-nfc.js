@@ -1,5 +1,6 @@
-/*jshint  bitwise: false, camelcase: false, quotmark: false, unused: vars, esversion: 6, browser: true*/
-/*global cordova, console, require */
+/*jshint  bitwise: false, camelcase: false, quotmark: false, unused: vars */
+/*global cordova, console */
+"use strict";
 
 function handleNfcFromIntentFilter() {
 
@@ -270,9 +271,9 @@ var ndef = {
      *
      * @see NFC Data Exchange Format (NDEF) http://www.nfc-forum.org/specs/spec_list/
      */
-    decodeMessage: function (ndefBytes) {
+    decodeMessage: function (bytes) {
 
-        var bytes = ndefBytes.slice(0), // clone since parsing is destructive
+        var bytes = bytes.slice(0), // clone since parsing is destructive
             ndef_message = [],
             tnf_byte,
             header,
@@ -410,7 +411,7 @@ var ndef = {
 
 // nfc provides javascript wrappers to the native phonegap implementation
 var nfc = {
-    
+
     addTagDiscoveredListener: function (callback, win, fail) {
         document.addEventListener("tag", callback, false);
         cordova.exec(win, fail, "NfcPlugin", "registerTag", []);
@@ -513,7 +514,7 @@ var nfc = {
     transceive: function(data) {
         return new Promise(function(resolve, reject) {
 
-            var buffer;
+            let buffer;
             if (typeof data === 'string') {
                 buffer = util.hexStringToArrayBuffer(data);
             } else if (data instanceof ArrayBuffer) {
@@ -521,29 +522,11 @@ var nfc = {
             } else if (data instanceof Uint8Array) {
                 buffer = data.buffer;
             } else {
-                reject("Expecting an ArrayBuffer or String");
+                reject("Expecing an ArrayBuffer or String");
             }
 
             cordova.exec(resolve, reject, 'NfcPlugin', 'transceive', [buffer]);
         });
-    },
-
-    // Android NfcAdapter.enableReaderMode flags 
-    FLAG_READER_NFC_A: 0x1,
-    FLAG_READER_NFC_B: 0x2,
-    FLAG_READER_NFC_F: 0x4,
-    FLAG_READER_NFC_V: 0x8,
-    FLAG_READER_NFC_BARCODE: 0x10,
-    FLAG_READER_SKIP_NDEF_CHECK: 0x80,
-    FLAG_READER_NO_PLATFORM_SOUNDS: 0x100,
-    
-    // Android NfcAdapter.enabledReaderMode
-    readerMode: function(flags, readCallback, errorCallback) {
-        cordova.exec(readCallback, errorCallback, 'NfcPlugin', 'readerMode', [flags]);
-    },
-
-    disableReaderMode: function(successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, 'NfcPlugin', 'disableReaderMode', []);
     }
 
 };
@@ -703,10 +686,9 @@ var util = {
         function toHexString(byte) {
             return ('0' + (byte & 0xFF).toString(16)).slice(-2);
         }
-        var typedArray = new Uint8Array(buffer);
+        const typedArray = new Uint8Array(buffer);
         var array = Array.from(typedArray);  // need to convert to [] so our map result is not typed
-        var parts = array.map(function(i) { return toHexString(i) });
-
+        const parts = array.map(i => toHexString(i));
         return parts.join('');
     },
 
@@ -730,16 +712,16 @@ var util = {
         }
 
         // check for some non-hex characters
-        var bad = hexString.match(/[G-Z\s]/i);
+        const bad = hexString.match(/[G-Z\s]/i);
         if (bad) {
             console.log('WARNING: found non-hex characters', bad);
         }
 
         // split the string into pairs of octets
-        var pairs = hexString.match(/[\dA-F]{2}/gi);
+        const pairs = hexString.match(/[\dA-F]{2}/gi);
 
         // convert the octets to integers
-        var ints = pairs.map(function(s) { return parseInt(s, 16) });
+        const ints = pairs.map(s => parseInt(s, 16));
 
         var array = new Uint8Array(ints);
         return array.buffer;
@@ -757,12 +739,7 @@ var textHelper = {
             utf16 = (data[0] & 0x80) !== 0; // assuming UTF-16BE
 
         // TODO need to deal with UTF in the future
-        if (utf16) {
-            console.log('WARNING: utf-16 data may not be handled properly for', languageCode);
-        }
-        // Use TextDecoder when we have enough browser support
-        // new TextDecoder('utf-8').decode(data.slice(languageCodeLength + 1));
-        // new TextDecoder('utf-16').decode(data.slice(languageCodeLength + 1));
+        // console.log("lang " + languageCode + (utf16 ? " utf16" : " utf8"));
 
         return util.bytesToString(data.slice(languageCodeLength + 1));
     },
@@ -855,20 +832,3 @@ window.nfc = nfc;
 window.ndef = ndef;
 window.util = util;
 window.fireNfcTagEvent = fireNfcTagEvent;
-
-// This channel receives nfcEvent data from native code 
-// and fires JavaScript events.
-require('cordova/channel').onCordovaReady.subscribe(function() {
-  require('cordova/exec')(success, null, 'NfcPlugin', 'channel', []);
-  function success(message) {
-    if (!message.type) { 
-        console.log(message);
-    } else {
-        console.log("Received NFC data, firing '" + message.type + "' event");
-        var e = document.createEvent('Events');
-        e.initEvent(message.type);
-        e.tag = message.tag;
-        document.dispatchEvent(e);
-    }
-  }
-});
