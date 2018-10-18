@@ -12,12 +12,14 @@
     "dependencies": {
         "cordova-android": "^7.1.1",
         "cordova-plugin-whitelist": "^1.3.3",
-        "cordova-sqlite-evcore-extbuild-free": "0.9.8"
+        "cordova-sqlite-evcore-extbuild-free": "0.9.8",
+        "phonegap-nfc": "^1.0.3"
     },
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
-            "cordova-sqlite-evcore-extbuild-free": {}
+            "cordova-sqlite-evcore-extbuild-free": {},
+            "phonegap-nfc": {}
         },
         "platforms": [
             "android"

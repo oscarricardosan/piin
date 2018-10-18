@@ -60,6 +60,15 @@ function initializePage(){
             }, function(){});
         });
 
+
+        nfc.readerMode(
+            nfc.FLAG_READER_NFC_A,
+            nfcTag => alert(JSON.stringify(nfcTag)),
+            error => alert('NFC reader mode failed', error)
+        );
+
+
+
     });
 
 

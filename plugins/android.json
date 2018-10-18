@@ -12,6 +12,9 @@
     },
     "cordova-sqlite-evcore-extbuild-free": {
       "PACKAGE_NAME": "savne.piin.lector"
+    },
+    "phonegap-nfc": {
+      "PACKAGE_NAME": "savne.piin.lector"
     }
   },
   "dependent_plugins": {}

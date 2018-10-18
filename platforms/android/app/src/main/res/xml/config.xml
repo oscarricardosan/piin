@@ -25,4 +25,8 @@
     <preference name="loglevel" value="DEBUG" />
     <preference name="orientation" value="default" />
     <preference name="fullscreen" value="true" />
+    <feature name="NfcPlugin">
+        <param name="android-package" value="com.chariotsolutions.nfc.plugin.NfcPlugin" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>

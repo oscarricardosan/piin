@@ -7,13 +7,20 @@ module.exports = [
     "clobbers": [
       "SQLitePlugin"
     ]
+  },
+  {
+    "id": "phonegap-nfc.NFC",
+    "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
+    "pluginId": "phonegap-nfc",
+    "runs": true
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova-sqlite-evcore-extbuild-free": "0.9.8"
+  "cordova-sqlite-evcore-extbuild-free": "0.9.8",
+  "phonegap-nfc": "1.0.3"
 };
 // BOTTOM OF METADATA
 });
