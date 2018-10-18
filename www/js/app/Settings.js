@@ -1,9 +1,10 @@
 var Settings= {
     setSettings: function(settings){
         if(settings !== null && settings !== undefined) {
-            this.url_server = settings.url_server;
-            this.domain = settings.domain;
+            this.tipo_multimedia = settings.tipo_multimedia;
+            this.tipo_lector = settings.tipo_lector;
         }
     },
-    discapacidad: undefined
+    tipo_multimedia: undefined,
+    tipo_lector: undefined
 };
