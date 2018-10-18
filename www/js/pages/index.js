@@ -1,6 +1,10 @@
 var App;
 function initializePage(){
 
+    $(document).bind("mobileinit", function(){
+        $.mobile.allowCrossDomainPages = true;
+    });
+
     App= new Vue({
         el: '#App',
         data: {
@@ -66,8 +70,6 @@ function initializePage(){
     /** Ready on mobiles **/
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
-
-        $.mobile.allowCrossDomainPages = true;
 
         nfc.addTagDiscoveredListener(
             function (nfcEvent) {
