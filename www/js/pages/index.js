@@ -2,36 +2,6 @@ var App;
 function initializePage(){
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
-
-
-        nfc.addTagDiscoveredListener(
-            function (nfcEvent) {
-                var tag = nfcEvent.tag;
-                alert(JSON.stringify(tag));
-                //navigator.notification.vibrate(100);
-
-
-                var mimeType = "text/plain";
-                var payload = "super secret data";
-                var message = nfc.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
-
-                nfc.write(
-                    [message],
-                    function () {
-                        alert("success");
-                    },
-                    function (reason) {
-                        alert("fail");
-                    }
-                );
-            },
-            function() {
-                alert("Listening for non-NDEF tags.");
-            },
-            function(){
-                alert("Error al leer FC.");
-            }
-        );
     });
 
     App= new Vue({
@@ -89,6 +59,22 @@ function initializePage(){
                 App.number_search= code;
             }, function(){});
         });
+
+
+        nfc.addTagDiscoveredListener(
+            function (nfcEvent) {
+                var tag = nfcEvent.tag;
+                alert(JSON.stringify(tag));
+                //navigator.notification.vibrate(100);
+
+            },
+            function() {
+                alert("Listening for non-NDEF tags.");
+            },
+            function(){
+                alert("Error al leer FC.");
+            }
+        );
 
 
 
