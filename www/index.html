@@ -156,7 +156,7 @@
                                     <a href="#" :class="'list-group-item '+(tipo_lector_qr===tipo_lector?'active':'')" @click.prevent="set_tipo_lector(tipo_lector_qr)">
                                         <strong>QR</strong> - Lectura de código a tráves de la camara
                                     </a>
-                                    <a href="#" :class="'list-group-item '+(tipo_lector_nfc===tipo_lector?'active':'')" @click.prevent="set_tipo_lector(tipo_lector_nfc)">
+                                    <a href="#" :class="'list-group-item '+(tipo_lector_nfc===tipo_lector?'active':'')" @click.prevent="set_tipo_lector(tipo_lector_nfc)" v-if="this.tiene_nfc">
                                         <strong>NFC</strong> - Lectura de chip a tráves de toque
                                     </a>
                                 </div>

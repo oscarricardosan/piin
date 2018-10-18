@@ -16,6 +16,7 @@ function initializePage(){
             tipo_lector: undefined,
             tipo_lector_qr: 'qr',
             tipo_lector_nfc: 'nfc',
+            tiene_nfc: undefined
         },
         methods: {
             set_tipo_lector: function(lector){
@@ -84,10 +85,12 @@ function initializePage(){
                     }
                 },
                 function() {
-                    alert("NFC, activo.");
+                    this.tiene_nfc= true;
+                    this.tipo_lector= this.tipo_lector_nfc;
                 },
                 function() {
-                    alert("Fail. addMimeTypeListener");
+                    this.tiene_nfc= false;
+                    this.tipo_lector= this.tipo_lector_qr;
                 }
             );
         })();
