@@ -1,8 +1,5 @@
 var App;
 function initializePage(){
-    $(document).bind("mobileinit", function(){
-        $.mobile.allowCrossDomainPages = true;
-    });
 
     App= new Vue({
         el: '#App',
@@ -61,11 +58,36 @@ function initializePage(){
         });
 
 
+    });
+
+
+
+
+    /** Ready on mobiles **/
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+
+        $.mobile.allowCrossDomainPages = true;
+
         nfc.addTagDiscoveredListener(
             function (nfcEvent) {
                 var tag = nfcEvent.tag;
                 alert(JSON.stringify(tag));
                 //navigator.notification.vibrate(100);
+
+                var mimeType = "text/plain";
+                var payload = "super secret data";
+                var message = nfc.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
+
+                nfc.write(
+                    [message],
+                    function () {
+                        alert("success");
+                    },
+                    function (reason) {
+                        alert("fail");
+                    }
+                );
 
             },
             function() {
@@ -75,17 +97,6 @@ function initializePage(){
                 alert("Error al leer FC.");
             }
         );
-
-
-
-    });
-
-
-
-
-    /** Ready on mobiles **/
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
 
     }
 }
