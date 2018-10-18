@@ -30,7 +30,15 @@ var Migrations= (function () {
                         'CREATE TABLE IF NOT EXISTS settings (id integer primary key, tipo_multimedia text, tipo_lector text )', [],
                         function (tx, result) {
                             SettingsModel.insert({id: 1}, {success: function () {
-                                runApp();
+                                MigrationModel.insert({
+                                    id: 1,
+                                    version: 1,
+                                    desc: 'Se crea tabla para settings'
+                                }, {
+                                    success: function(){
+                                        runApp();
+                                    }
+                                });
                             }});
                         },
                         function (error) {alert("Error creando tabla settings. " + error.message);}
