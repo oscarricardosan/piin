@@ -64,14 +64,28 @@ function initializePage(){
         nfc.addTagDiscoveredListener(
             function (nfcEvent) {
                 var tag = nfcEvent.tag;
-                alert(JSON.stringify(tag));
+                alert('NO NDEF=> '+JSON.stringify(tag));
                 //navigator.notification.vibrate(100);
             },
             function() {
                 alert("Listening for non-NDEF tags.");
             },
             function(){
-                alert("Error al leer NFC.");
+                alert("Error al leer NO-NDEF.");
+            }
+        );
+
+        nfc.addNdefListener(
+            function (nfcEvent) {
+                var tag = nfcEvent.tag;
+                alert('NDEF=> '+JSON.stringify(tag));
+                //navigator.notification.vibrate(100);
+            },
+            function() {
+                alert("Listening for NDEF tags.");
+            },
+            function(){
+                alert("Error al leer NDEF.");
             }
         );
 
