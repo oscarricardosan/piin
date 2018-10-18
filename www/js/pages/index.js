@@ -77,6 +77,7 @@ function initializePage(){
                 alert(JSON.stringify(tag));
                 //navigator.notification.vibrate(100);
 
+                alert('inicia esritura');
                 var mimeType = "text/plain";
                 var payload = "super secret data";
                 var message = nfc.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
@@ -90,6 +91,7 @@ function initializePage(){
                         alert("fail");
                     }
                 );
+                alert('termina esritura');
 
             },
             function() {
@@ -99,6 +101,28 @@ function initializePage(){
                 alert("Error al leer FC.");
             }
         );
+
+        nfc.addMimeTypeListener(
+            "text/plain",
+            parseTag,
+
+            function() {
+                alert("Success. addMimeTypeListener");
+            },
+            function() {
+                alert("Fail. addMimeTypeListener");
+            }
+        );
+
+        function parseTag(nfcEvent) {
+            alert('inicia parsetag');
+            var records = nfcEvent.tagData;
+            for (var i = 0; i < records.length; i++) {
+                var record = records[i];
+                alert(nfc.bytesToString(record.payload));
+            }
+            alert('termina parsetag');
+        }
 
     }
 }
