@@ -78,9 +78,9 @@ function initializePage(){
                 //navigator.notification.vibrate(100);
 
                 alert('inicia esritura');
-                var mimeType = "text/plain";
-                var payload = "super secret data";
-                var message = nfc.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
+                var message = [
+                    ndef.textRecord("prueba")
+                ];
 
                 nfc.write(
                     [message],
