@@ -61,10 +61,18 @@ function initializePage(){
         });
 
 
-        nfc.readerMode(
-            nfc.FLAG_READER_NFC_A,
-            nfcTag => alert(JSON.stringify(nfcTag)),
-            error => alert('NFC reader mode failed', error)
+        nfc.addTagDiscoveredListener(
+            function (nfcEvent) {
+                var tag = nfcEvent.tag;
+                alert(JSON.stringify(tag));
+                //navigator.notification.vibrate(100);
+            },
+            function() {
+                alert("Listening for non-NDEF tags.");
+            },
+            function(){
+                alert("Error al leer NFC.");
+            }
         );
 
 
