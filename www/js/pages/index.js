@@ -1,6 +1,6 @@
 var App;
 function initializePage(){
-
+    alert('initialize 1');
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
     });
@@ -41,7 +41,7 @@ function initializePage(){
 
             }
         },
-        watch: {c
+        watch: {
         },
         mounted: function(){
 
@@ -51,9 +51,6 @@ function initializePage(){
     $(document).ready(function(){
 
         var url_params= UrlUtility_.getParams();
-        if(url_params.tab !== undefined){
-            $('[href="#'+url_params.tab+'"]').click();
-        }
 
         $('#scan_barcode_to_search').click(function(){
             cloudSky.zBar.scan({
