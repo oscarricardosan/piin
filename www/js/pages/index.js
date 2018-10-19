@@ -70,7 +70,7 @@ function initializePage(){
                         alert('Error');
                     },
 
-                    types, options, licenseiOs, licenseAndroid
+                    types, options, "", "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM"
                 );
                 return;
                 cloudSky.zBar.scan({
