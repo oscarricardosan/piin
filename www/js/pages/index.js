@@ -29,31 +29,23 @@ function initializePage(){
             },
 
             scan_qr: function(){
-                cordova.plugins.barcodeScanner.scan(
-                    function (result) {
-                        var vinsScanned = JSON.parse(result.text);
-                        alert("VINs scanned:\n" + vinsScanned.join('\n'));
-                    },
-                    function (error) {
-                        alert("Scanning failed: " + error);
-                    },
-                    {
-                        VINs: "VIN1,VIN2,VIN3",
-                        vehicles: "Year1 Make1 Model1, Year2 Make2 Model2, Year3 Make3 Model3",
-                        isSpeechRecognitionAvailable: false,
-                        preferFrontCamera : true, // iOS and Android
-                        showFlipCameraButton : true, // iOS and Android
-                        showTorchButton : true, // iOS and Android
-                        torchOn: true, // Android, launch with the torch switched on (if available)
-                        saveHistory: true, // Android, save scan history (default false)
-                        prompt : "Place a barcode inside the scan area", // Android
-                        resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                        formats : "QR_CODE,CODE_39, CODE_128, DATA_MATRIX",
-                        orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-                        disableAnimations : true, // iOS
-                        disableSuccessBeep: false // iOS and Android
+                QRScanner.prepare(onDone); // prompt for access
+
+                function onDone(status){
+                    if (!status.authorized) {
+                        // the video preview will remain black, and scanning is disabled
+                        // you can try asking the user again, but you'll have to use `QRScanner.openSettings()`.
                     }
-                );
+                }
+                // later in your app:
+
+                QRScanner.show(); // optional: make the webview transparent so the video preview is visible behind it
+
+                QRScanner.scan(displayContents); // scan until something is found
+
+                function displayContents(text){
+                    alert(text);
+                }
                 return;
                 cloudSky.zBar.scan({
                     text_title: "Leer código QR", // Android only
