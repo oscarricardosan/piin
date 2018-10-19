@@ -29,6 +29,50 @@ function initializePage(){
             },
 
             scan_qr: function(){
+                var types = ["QR Code"];
+
+                /**
+                 * Initiate scan with options
+                 * NOTE: Some features are unavailable without a license
+                 * Obtain your key at http://pdf417.mobi
+                 */
+                var options = {
+                    beep : true,  // Beep on
+                    noDialog : true, // Skip confirm dialog after scan
+                    uncertain : false, //Recommended
+                    quietZone : false, //Recommended
+                    highRes : false, //Recommended
+                    inverseScanning: false,
+                    frontFace : false
+                };
+
+
+                cordova.plugins.pdf417Scanner.scan(
+                    // Register the callback handler
+                    function callback(scanningResult) {
+                        // handle cancelled scanning
+                        if (scanningResult.cancelled == true) {
+                            alert("Cancelled!");
+                            return;
+                        }
+
+                        alert(JSON.stringify(scanningResult));
+                        var resultList = scanningResult.resultList;
+                        alert(JSON.stringify(resultList));
+                        for (var i = 0; i < resultList.length; i++) {
+                            var recognizerResult = resultList[i];
+                            alert(JSON.stringify(recognizerResult));
+                        }
+                    },
+
+                    // Register the error callback
+                    function errorHandler(err) {
+                        alert('Error');
+                    },
+
+                    types, options, licenseiOs, licenseAndroid
+                );
+                return;
                 cloudSky.zBar.scan({
                     text_title: "Leer código QR", // Android only
                     text_instructions: "Por favor apuntar tu camara al código QR", // Android only
