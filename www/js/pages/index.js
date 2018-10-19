@@ -29,23 +29,28 @@ function initializePage(){
             },
 
             scan_qr: function(){
-                QRScanner.prepare(onDone); // prompt for access
-
-                function onDone(status){
-                    if (!status.authorized) {
-                        // the video preview will remain black, and scanning is disabled
-                        // you can try asking the user again, but you'll have to use `QRScanner.openSettings()`.
+                try{
+                    // Make sure the user will give your app camera access when prompted, then:
+                    QRScanner.prepare(onDone); // prompt for access
+                    function onDone(status){
+                        if (!status.authorized) {
+                            // the video preview will remain black, and scanning is disabled
+                            // you can try asking the user again, but you'll have to use `QRScanner.openSettings()`.
+                        }
                     }
+
+                    QRScanner.show(); // optional: make the webview transparent so the video preview is visible behind it
+
+                    QRScanner.scan(displayContents); // scan until something is found
+
+                    function displayContents(text){
+                        alert(text);
+                    }
+                }catch (e) {
+                    alert(e);
                 }
-                // later in your app:
 
-                QRScanner.show(); // optional: make the webview transparent so the video preview is visible behind it
 
-                QRScanner.scan(displayContents); // scan until something is found
-
-                function displayContents(text){
-                    alert(text);
-                }
                 return;
                 cloudSky.zBar.scan({
                     text_title: "Leer código QR", // Android only
