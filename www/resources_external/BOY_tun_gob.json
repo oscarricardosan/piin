@@ -1,7 +1,11 @@
 {
   "point_1": {
-    "audio": '',
-    "video": '',
-    "image": '',
+    "multimedia":
+      [
+        {"type": "audio", "src": ""},
+        {"type": "video", "src": ""},
+        {"type": "image", "src": ""},
+        {"type": "default", "src": ""}
+      ]
   }
 }
