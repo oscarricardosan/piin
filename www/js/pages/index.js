@@ -38,6 +38,8 @@ function initializePage(){
                         alert("Scanning failed: " + error);
                     },
                     {
+                        VINs: "VIN1,VIN2,VIN3",
+                        vehicles: "Year1 Make1 Model1, Year2 Make2 Model2, Year3 Make3 Model3",
                         isSpeechRecognitionAvailable: false,
                         preferFrontCamera : true, // iOS and Android
                         showFlipCameraButton : true, // iOS and Android
