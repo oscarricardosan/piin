@@ -67,10 +67,8 @@ function initializePage(){
                     $.getJSON("resources_external/"+this.code.ubication+".json", function(data) {
                         alert(JSON.stringify(data))
                     })
-                    .error(function(jqXHR, textStatus, errorThrown) {
-                        alert("error " + textStatus);
-                        alert("incoming Text " + jqXHR.responseText);
-                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) { alert('getJSON request failed! ' + textStatus); })
+
                 }catch (e) {
                     alert(e);
                 }
