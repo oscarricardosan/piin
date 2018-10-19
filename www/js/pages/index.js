@@ -22,7 +22,7 @@ function initializePage(){
             ready: true,
             tipo_multimedia: undefined,
             tipo_multimedia_audio: 'audio',
-            tipo_multimedia_mapa: 'mapa',
+            tipo_multimedia_imagen: 'imagen',
             tipo_multimedia_video: 'video',
             tipo_lector: undefined,
             tipo_lector_qr: 'qr',
@@ -57,8 +57,14 @@ function initializePage(){
             },
             set_raw_code: function(raw_code){
                 var code_parts= raw_code.split(' ');
-                this.code.point_name= code_parts[0];
-                this.code.ubication= code_parts[1];
+                this.code.ubication= code_parts[0];
+                this.code.point_name= code_parts[1];
+                this.play_information();
+            },
+            play_information: function(){
+                $.getJSON("../../resources_external/"+this.code.ubication+".json", function(data) {
+                    alert(JSON.stringify(data))
+                });
             }
         },
         filters: {
@@ -69,8 +75,8 @@ function initializePage(){
                     return "Para reproducir audio.";
                 if(this.tipo_multimedia === this.tipo_multimedia_video)
                     return "Para reproducir video.";
-                if(this.tipo_multimedia === this.tipo_multimedia_mapa)
-                    return "Para mostrar mapa.";
+                if(this.tipo_multimedia === this.tipo_multimedia_imagen)
+                    return "Para mostrar imagen.";
                 return '';
 
             }
