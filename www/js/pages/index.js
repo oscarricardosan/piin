@@ -92,8 +92,8 @@ function initializePage(){
             asset: function(relative_path){
                 alert(window.location.href);
                 alert(window.location.href.replace('index.html', ''));
-                alert(window.location.href.replace('index.html', '')+'/'+relative_path);
-                return window.location.href.replace('index.html', '')+'/'+relative_path;
+                alert(window.location.href.replace('index.html', '')+relative_path);
+                return window.location.href.replace('index.html', '')+relative_path;
             }
         },
         filters: {
