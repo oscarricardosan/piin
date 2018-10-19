@@ -36,7 +36,8 @@ function initializePage(){
 
             audio_playing: undefined,
             playing_audio: false,
-            playing_video: false
+            playing_video: false,
+            playing_image: false
         },
         methods: {
             set_tipo_lector: function(lector){
