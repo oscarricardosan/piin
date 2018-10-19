@@ -8,6 +8,17 @@ function initializePage(){
     App= new Vue({
         el: '#App',
         data: {
+            qr_lector_options:
+            {
+                preferFrontCamera : false, // iOS and Android camara frontal
+                showFlipCameraButton : true, // iOS and Android mostrar botón para voltear camara
+                showTorchButton : true, // iOS and Android mostrar boton de flash
+                torchOn: false, // flash
+                prompt : "Ubica el código QR dentro del área de escaneo", // Android
+                resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                formats : "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+                orientation : "portrait",
+            },
             ready: true,
             tipo_multimedia: undefined,
             tipo_multimedia_audio: 'audio',
@@ -29,40 +40,14 @@ function initializePage(){
             },
 
             scan_qr: function(){
-                alert('entre');
-                try{
-                    cordova.plugins.barcodeScanner.scan(
-                        function (result) {
-                            alert("We got a barcode\n" +
-                                "Result: " + result.text + "\n" +
-                                "Format: " + result.format + "\n" +
-                                "Cancelled: " + result.cancelled);
-                        },
-                        function (error) {
-                            alert("Scanning failed: " + error);
-                        },
-                        {
-                            preferFrontCamera : true, // iOS and Android
-                            showFlipCameraButton : true, // iOS and Android
-                            showTorchButton : true, // iOS and Android
-                            torchOn: true, // Android, launch with the torch switched on (if available)
-                            prompt : "Place a barcode inside the scan area", // Android
-                            resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                            formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-                            orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-                            disableAnimations : true // iOS
-                        }
-                    );
-                }catch(e){
-                    alert(e);
-                }
-                return ;
-                cloudSky.zBar.scan({
-                    text_title: "Leer código QR", // Android only
-                    text_instructions: "Por favor apuntar tu camara al código QR", // Android only
-                }, function(code){
-                    alert(code);
-                }, function(){});
+                cordova.plugins.barcodeScanner.scan(
+                    function (result) {
+                        alert(result.text);
+                    },
+                    function (error) {
+                        alert("Scanning failed: " + error);
+                    }, App.qr_lector_options
+                );
             }
         },
         filters: {
@@ -114,11 +99,11 @@ function initializePage(){
                         }
                     }
                 },
-                function() {
+                function() {//Inicializacion exitosa
                     App.tiene_nfc= true;
                     App.tipo_lector= App.tipo_lector_nfc;
                 },
-                function() {
+                function() {//Inicializacion fallida
                     App.tiene_nfc= false;
                     App.tipo_lector= App.tipo_lector_qr;
                 }
