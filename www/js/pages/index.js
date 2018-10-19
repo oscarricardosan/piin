@@ -112,9 +112,16 @@ function initializePage(){
             play_video: function(src){
                 App.playing_video = true;
                 var video = document.getElementById('video_play');
-                video.src = url;
+                video.src = UrlUtility_.asset(src);
                 video.play();
-            }
+            },
+
+            stop_video: function(){
+                var video = document.getElementById('video_play');
+                video.pause();
+                video.src="";
+                App.playing_video = false;
+            },
         },
         filters: {
         },
