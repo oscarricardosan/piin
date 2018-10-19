@@ -2,7 +2,7 @@
   "point_1": {
     "multimedia":
       [
-        {"type": "audio", "src": ""},
+        {"type": "audio", "src": "resources_external/BOY_tun_gob/1.mp3"},
         {"type": "video", "src": ""},
         {"type": "image", "src": ""},
         {"type": "default", "src": ""}
