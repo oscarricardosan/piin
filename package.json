@@ -17,7 +17,8 @@
         "cordova-plugin-whitelist": "^1.3.3",
         "cordova-sqlite-evcore-extbuild-free": "0.9.8",
         "pdf417-phonegap": "git+https://github.com/alejonext/pdf417-phonegap.git",
-        "phonegap-nfc": "git+https://github.com/chariotsolutions/phonegap-nfc.git#1.0.0"
+        "phonegap-nfc": "git+https://github.com/chariotsolutions/phonegap-nfc.git#1.0.0",
+        "phonegap-plugin-barcodescanner": "^8.0.0"
     },
     "cordova": {
         "plugins": {
