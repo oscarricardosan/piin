@@ -85,14 +85,16 @@ function initializePage(){
 
             play_audio: function(src){
                 App.audio_playing = new Media(UrlUtility_.asset(src),
-                    function () { },
+                    function () {alert('termino reproducción'); App.playing_audio= false;},
                     function (err) { alert("playAudio():Audio Error: " + JSON.stringify(err)); }
                 );
                 App.audio_playing.play();
+                App.playing_audio= true;
             },
 
             stop_audio: function(){
                 App.audio_playing.stop();
+                App.playing_audio= false;
             }
         },
         filters: {
