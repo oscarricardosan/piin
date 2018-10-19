@@ -71,7 +71,7 @@ function initializePage(){
                             alert(JSON.stringify(point));
                             alert(App.tipo_multimedia);
                             if(App.tipo_multimedia === App.tipo_multimedia_audio){
-                                var file= _.findWhere(point, {"type": App.tipo_multimedia});
+                                var file= _.findWhere(point.multimedia, {"type": App.tipo_multimedia});
                                 alert(JSON.stringify(file));
                                 var my_media = new Media(file.src,
                                     function () { },
