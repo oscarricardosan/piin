@@ -27,7 +27,13 @@ function initializePage(){
             tipo_lector: undefined,
             tipo_lector_qr: 'qr',
             tipo_lector_nfc: 'nfc',
-            tiene_nfc: undefined
+            tiene_nfc: undefined,
+
+            code:{
+                point_name: undefined,
+                ubication: undefined
+            }
+
         },
         methods: {
             set_tipo_lector: function(lector){
@@ -42,12 +48,17 @@ function initializePage(){
             scan_qr: function(){
                 cordova.plugins.barcodeScanner.scan(
                     function (result) {
-                        alert(result.text);
+                        App.set_raw_code(result.text);
                     },
                     function (error) {
                         alert("Scanning failed: " + error);
                     }, App.qr_lector_options
                 );
+            },
+            set_raw_code: function(raw_code){
+                var code_parts= raw_code.split(' ');
+                this.code.point_name= code_parts[1];
+                this.code.ubication= code_parts[1];
             }
         },
         filters: {
@@ -93,7 +104,7 @@ function initializePage(){
                         try {
                             var contenido_tag_puro= nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload);
                             var contenido_tag= contenido_tag_puro.substr(3, 80000);
-                            alert(contenido_tag);
+                            App.set_raw_code(contenido_tag);
                         }catch (e) {
                             alert(e);
                         }

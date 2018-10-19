@@ -108,6 +108,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align: center">
+                        <p class="help-block">
+                            {{ code.ubication }} - {{ code.point_name }}
+                        </p>
+                    </div>
+                </div>
                 <div class="row" v-if="tipo_lector === tipo_lector_qr" @click.prevent="scan_qr">
                     <div class="col-sm-12" style="text-align: center">
                         <img src="images/savne_qr.png" style="width: 60%">
