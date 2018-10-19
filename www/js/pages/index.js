@@ -64,7 +64,7 @@ function initializePage(){
             },
             play_information: function(){
                 try{
-                    $.getJSON("../../resources_external/"+this.code.ubication+".json", function(data) {
+                    $.getJSON("resources_external/"+this.code.ubication+".json", function(data) {
                         alert(JSON.stringify(data))
                     })
                     .error(function(jqXHR, textStatus, errorThrown) {
