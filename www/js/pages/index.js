@@ -65,18 +65,22 @@ function initializePage(){
             play_information: function(){
                 try{
                     $.getJSON("resources_external/"+App.code.ubication+".json", function(data) {
-                        alert(JSON.stringify(data));
-                        var point = data["point_"+App.code.point_name];
-                        alert(JSON.stringify(point));
-                        alert(App.tipo_multimedia);
-                        if(App.tipo_multimedia === App.tipo_multimedia_audio){
-                            var file= _.findWhere(point, {"type": App.tipo_multimedia});
-                            alert(JSON.stringify(file));
-                            var my_media = new Media(file.src,
-                                function () { },
-                                function (err) { alert("playAudio():Audio Error: " + err); }
-                            );
-                            my_media.play();
+                        try{
+                            alert(JSON.stringify(data));
+                            var point = data["point_"+App.code.point_name];
+                            alert(JSON.stringify(point));
+                            alert(App.tipo_multimedia);
+                            if(App.tipo_multimedia === App.tipo_multimedia_audio){
+                                var file= _.findWhere(point, {"type": App.tipo_multimedia});
+                                alert(JSON.stringify(file));
+                                var my_media = new Media(file.src,
+                                    function () { },
+                                    function (err) { alert("playAudio():Audio Error: " + err); }
+                                );
+                                my_media.play();
+                            }
+                        }catch (e) {
+                            alert(e);
                         }
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) { alert('getJSON request failed! ' + textStatus); })
