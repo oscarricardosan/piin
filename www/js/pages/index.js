@@ -29,56 +29,28 @@ function initializePage(){
             },
 
             scan_qr: function(){
-                var types = ["QR Code"];
-
-                /**
-                 * Initiate scan with options
-                 * NOTE: Some features are unavailable without a license
-                 * Obtain your key at http://pdf417.mobi
-                 */
-                var options = {
-                    beep : true,  // Beep on
-                    noDialog : true, // Skip confirm dialog after scan
-                    uncertain : false, //Recommended
-                    quietZone : false, //Recommended
-                    highRes : false, //Recommended
-                    inverseScanning: false,
-                    frontFace : false
-                };
-
-// This license key allows setting overlay views for this application ID: mobi.pdf417.demo
-                var licenseiOs = "RZNIT6NY-YUY2L44B-JY4C3TC7-LE5LFU2B-JOAF4FO3-L5MTVMWT-IFFYAXQV-3NPQQA4G";
-
-// This license is only valid for package name "mobi.pdf417.demo"
-                var licenseAndroid = "UDPICR2T-RA2LGTSD-YTEONPSJ-LE4WWOWC-5ICAIBAE-AQCAIBAE-AQCAIBAE-AQCFKMFM";
-
-// This license is only valid for Product ID "e2994220-6b3d-11e5-a1d6-4be717ee9e23"
-                var licenseWP8 = "5JKGDHZK-5WN4KMQO-6TZU3KDQ-I4YN67V5-XSN4FFS3-OZFAXHK7-EMETU6XD-EY74TM4T";
-
-                cordova.plugins.pdf417Scanner.scan(
-                    // Register the callback handler
-                    function callback(scanningResult) {
-                        // handle cancelled scanning
-                        if (scanningResult.cancelled == true) {
-                            alert("Cancelled!");
-                            return;
-                        }
-
-                        alert(JSON.stringify(scanningResult));
-                        var resultList = scanningResult.resultList;
-                        alert(JSON.stringify(resultList));
-                        for (var i = 0; i < resultList.length; i++) {
-                            var recognizerResult = resultList[i];
-                            alert(JSON.stringify(recognizerResult));
-                        }
+                cordova.plugins.barcodeScanner.scan(
+                    function (result) {
+                        var vinsScanned = JSON.parse(result.text);
+                        alert("VINs scanned:\n" + vinsScanned.join('\n'));
                     },
-
-                    // Register the error callback
-                    function errorHandler(err) {
-                        alert('Error');
+                    function (error) {
+                        alert("Scanning failed: " + error);
                     },
-
-                    types, options, licenseiOs, licenseAndroid
+                    {
+                        isSpeechRecognitionAvailable: false,
+                        preferFrontCamera : true, // iOS and Android
+                        showFlipCameraButton : true, // iOS and Android
+                        showTorchButton : true, // iOS and Android
+                        torchOn: true, // Android, launch with the torch switched on (if available)
+                        saveHistory: true, // Android, save scan history (default false)
+                        prompt : "Place a barcode inside the scan area", // Android
+                        resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                        formats : "QR_CODE,CODE_39, CODE_128, DATA_MATRIX",
+                        orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+                        disableAnimations : true, // iOS
+                        disableSuccessBeep: false // iOS and Android
+                    }
                 );
                 return;
                 cloudSky.zBar.scan({
