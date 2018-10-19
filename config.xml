@@ -24,5 +24,5 @@
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-sqlite-evcore-extbuild-free" spec="0.9.8" />
     <plugin name="phonegap-nfc" spec="https://github.com/chariotsolutions/phonegap-nfc#0.7.3" />
-    <plugin name="cordova-plugin-qrscanner" spec="https://github.com/bitpay/cordova-plugin-qrscanner#2.6.0" />
+    <plugin name="cordova-plugin-qrscanner" spec="https://github.com/bitpay/cordova-plugin-qrscanner#1.1.0" />
 </widget>
