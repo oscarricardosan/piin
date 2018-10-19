@@ -46,5 +46,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-native-qrcodescanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-native-qrcodescanner"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
