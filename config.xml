@@ -25,6 +25,6 @@
     <plugin name="cordova-sqlite-evcore-extbuild-free" spec="0.9.8" />
     <plugin name="phonegap-nfc" spec="https://github.com/chariotsolutions/phonegap-nfc#0.7.3" />
     <plugin name="phonegap-plugin-barcodescanner" spec="https://github.com/phonegap/phonegap-plugin-barcodescanner#6.0.5" />
-    <plugin name="cordova-plugin-media" spec="5.0.2" />
+    <plugin name="cordova-plugin-media" spec="5.0.1" />
 
 </widget>
