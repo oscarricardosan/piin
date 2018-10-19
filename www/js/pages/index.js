@@ -99,12 +99,14 @@ function initializePage(){
             nfc.addMimeTypeListener(
                 "text/plain",
                 function (nfcEvent){
-                    try {
-                        var contenido_tag_puro= nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload);
-                        var contenido_tag= contenido_tag_puro.substr(3, 80000);
-                        alert(contenido_tag);
-                    }catch (e) {
-                        alert(e);
+                    if(App.tipo_lector === App.tipo_lector_nfc){
+                        try {
+                            var contenido_tag_puro= nfc.bytesToString(nfcEvent.tag.ndefMessage[0].payload);
+                            var contenido_tag= contenido_tag_puro.substr(3, 80000);
+                            alert(contenido_tag);
+                        }catch (e) {
+                            alert(e);
+                        }
                     }
                 },
                 function() {
