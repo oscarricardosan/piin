@@ -27,6 +27,16 @@ function initializePage(){
         }
     }
 
+    function displayContents(err, text){
+        if(err){
+            alert(err);
+            // an error occurred, or the scan was canceled (error code `6`)
+        } else {
+            // The scan completed, display the contents of the QR code:
+            alert(text);
+        }
+    }
+
     App= new Vue({
         el: '#App',
         data: {
@@ -51,18 +61,13 @@ function initializePage(){
             },
 
             scan_qr: function(){
-                // Start a scan. Scanning will continue until something is detected or
-                // `QRScanner.cancelScan()` is called.
-                QRScanner.scan(displayContents);
-
-                function displayContents(err, text){
-                    if(err){
-                        alert(err);
-                        // an error occurred, or the scan was canceled (error code `6`)
-                    } else {
-                        // The scan completed, display the contents of the QR code:
-                        alert(text);
-                    }
+                alert('entre');
+                try{
+                    // Start a scan. Scanning will continue until something is detected or
+                    // `QRScanner.cancelScan()` is called.
+                    QRScanner.scan(displayContents);
+                }catch(e){
+                    alert(e);
                 }
 
                 // Make the webview transparent so the video preview is visible behind it.
