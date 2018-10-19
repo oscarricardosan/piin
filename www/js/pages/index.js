@@ -73,7 +73,7 @@ function initializePage(){
                             if(App.tipo_multimedia === App.tipo_multimedia_audio){
                                 var file= _.findWhere(point.multimedia, {"type": App.tipo_multimedia});
                                 alert(JSON.stringify(file));
-                                var my_media = new Media(file.src,
+                                var my_media = new Media(App.asset(file.src),
                                     function () { },
                                     function (err) { alert("playAudio():Audio Error: " + JSON.stringify(err)); }
                                 );
@@ -88,6 +88,12 @@ function initializePage(){
                 }catch (e) {
                     alert(e);
                 }
+            },
+            asset: function(relative_path){
+                alert(window.location.href);
+                alert(window.location.href.replace('index.html', ''));
+                alert(window.location.href.replace('index.html', '')+'/'+relative_path);
+                return window.location.href.replace('index.html', '')+'/'+relative_path;
             }
         },
         filters: {
