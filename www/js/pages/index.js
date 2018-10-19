@@ -77,6 +77,9 @@ function initializePage(){
                                 case App.tipo_multimedia_video:
                                     App.play_video(file.src);
                                     break;
+                                case App.tipo_multimedia_imagen:
+                                    App.play_image(file.src);
+                                    break;
                             }
 
 
@@ -102,7 +105,6 @@ function initializePage(){
                 App.audio_playing.play();
                 App.playing_audio= true;
             },
-
             stop_audio: function(){
                 App.audio_playing.stop();
             },
@@ -113,12 +115,20 @@ function initializePage(){
                 video.src = UrlUtility_.asset(src);
                 video.play();
             },
-
             stop_video: function(){
                 var video = document.getElementById('video_play');
                 video.pause();
                 video.src="";
                 App.playing_video = false;
+            },
+
+            play_image: function(src){
+                App.playing_image = true;
+                $('#img_play').prop('src', UrlUtility_.asset(src));
+            },
+            stop_image: function(){
+                $('#img_play').prop('src', "");
+                App.playing_image = false;
             },
         },
         filters: {
