@@ -35,7 +35,8 @@ function initializePage(){
             },
 
             audio_playing: undefined,
-            playing_audio: false
+            playing_audio: false,
+            playing_video: false
         },
         methods: {
             set_tipo_lector: function(lector){
@@ -69,9 +70,17 @@ function initializePage(){
                         try{
                             var point = data["point_"+App.code.point_name];
                             var file= _.findWhere(point.multimedia, {"type": App.tipo_multimedia});
-                            if(file.reproductive_type === App.tipo_multimedia_audio){
-                                App.play_audio(file.src);
+
+                            switch(file.reproductive_type) {
+                                case App.tipo_multimedia_audio:
+                                    App.play_audio(file.src);
+                                    break;
+                                case App.tipo_multimedia_video:
+                                    App.play_video(file.src);
+                                    break;
                             }
+
+
                         }catch (e) {
                             alert(e);
                         }
@@ -98,6 +107,13 @@ function initializePage(){
 
             stop_audio: function(){
                 App.audio_playing.stop();
+            },
+
+            play_video: function(src){
+                App.playing_video = true;
+                var video = document.getElementById('video_play');
+                video.src = url;
+                video.play();
             }
         },
         filters: {
