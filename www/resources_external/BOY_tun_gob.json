@@ -4,7 +4,7 @@
       [
         {"type": "audio", "src": "resources_external/BOY_tun_gob/1.mp3", "reproductive_type": "audio"},
         {"type": "video", "src": "resources_external/BOY_tun_gob/1.mp4", "reproductive_type": "video"},
-        {"type": "image", "src": "resources_external/BOY_tun_gob/1.png", "reproductive_type": "imagen"},
+        {"type": "imagen", "src": "resources_external/BOY_tun_gob/1.png", "reproductive_type": "imagen"},
         {"type": "default", "src": "resources_external/BOY_tun_gob/1.mp3", "reproductive_type": "audio"}
       ]
   }
