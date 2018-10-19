@@ -75,7 +75,7 @@ function initializePage(){
                                 alert(JSON.stringify(file));
                                 var my_media = new Media(file.src,
                                     function () { },
-                                    function (err) { alert("playAudio():Audio Error: " + err); }
+                                    function (err) { alert("playAudio():Audio Error: " + JSON.stringify(err)); }
                                 );
                                 my_media.play();
                             }
