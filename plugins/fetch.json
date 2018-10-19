@@ -38,5 +38,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "pdf417-phonegap": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/alejonext/pdf417-phonegap"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
