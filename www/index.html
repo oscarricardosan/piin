@@ -88,6 +88,18 @@
         " v-if="!ready">
             <i class="fa fa-circle-o-notch fa-spin fa-fw margin-bottom"></i>
         </div>
+        <div style="
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.93); text-align: center;
+            font-size: 10em; padding-top: 35vh; z-index: 999999;
+        " v-if="!playing_audio">
+            <i class="fa fa-circle-o-notch fa-spin fa-fw margin-bottom"></i>
+            Reproduciendo audio
+            <div style="text-align: center; padding-top: 2em;">
+                <button  @click.prevent="stop_audio">Detener audio</button>
+            </div>
+
+        </div>
 
 
         <!-- Content Wrapper. Contains page content -->

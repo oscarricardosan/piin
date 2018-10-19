@@ -36,11 +36,16 @@ var UrlUtility_= (function () {
         history.pushState({}, null, current_url[0]+'?'+paramsJoin.join('&'));
     };
 
+    var asset= function (relative_path){
+        return window.location.href.replace('index.html', '')+relative_path;
+    };
+
     function construct(){//Funcion que controla cuales son los metodos publicos
         return {
             getParams           : getParams,
             setParam            : setParam,
-            getParam            : getParam
+            getParam            : getParam,
+            asset               : asset,
         }
     };
     return {construct:construct};//retorna los metodos publicos

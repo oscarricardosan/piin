@@ -8,8 +8,7 @@ function initializePage(){
     App= new Vue({
         el: '#App',
         data: {
-            qr_lector_options:
-            {
+            qr_lector_options: {
                 preferFrontCamera : false, // iOS and Android camara frontal
                 showFlipCameraButton : true, // iOS and Android mostrar botón para voltear camara
                 showTorchButton : true, // iOS and Android mostrar boton de flash
@@ -33,8 +32,10 @@ function initializePage(){
             code:{
                 point_name: undefined,
                 ubication: undefined
-            }
+            },
 
+            audio_playing: undefined,
+            playing_audio: false
         },
         methods: {
             set_tipo_lector: function(lector){
@@ -69,11 +70,7 @@ function initializePage(){
                             var point = data["point_"+App.code.point_name];
                             var file= _.findWhere(point.multimedia, {"type": App.tipo_multimedia});
                             if(file.reproductive_type === App.tipo_multimedia_audio){
-                                var my_media = new Media(App.asset(file.src),
-                                    function () { },
-                                    function (err) { alert("playAudio():Audio Error: " + JSON.stringify(err)); }
-                                );
-                                my_media.play();
+                                App.play_audio(file.src);
                             }
                         }catch (e) {
                             alert(e);
@@ -85,11 +82,17 @@ function initializePage(){
                     alert(e);
                 }
             },
-            asset: function(relative_path){
-                alert(window.location.href);
-                alert(window.location.href.replace('index.html', ''));
-                alert(window.location.href.replace('index.html', '')+relative_path);
-                return window.location.href.replace('index.html', '')+relative_path;
+
+            play_audio: function(src){
+                App.audio_playing = new Media(UrlUtility_.asset(src),
+                    function () { },
+                    function (err) { alert("playAudio():Audio Error: " + JSON.stringify(err)); }
+                );
+                App.audio_playing.play();
+            },
+
+            stop_audio: function(){
+                App.audio_playing.stop();
             }
         },
         filters: {
