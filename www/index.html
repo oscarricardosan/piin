@@ -109,6 +109,17 @@
             <!-- Main content -->
             <section class="content-fluid">
                 <div class="row" style="min-height: 30vh">
+                    <div class="col-xs-12">
+                        <video width="400px" height="300px" autoplay controls onclick="~videoClicked(this)">
+                            <source src="file:///android_asset/www/resources_external/BOY_tun_gob/1.mp4" type="video/mp4">
+                        </video>
+                        <script>
+                            //somewhere in your scripts
+                            videoClicked function(elem) {
+                                $(elem).load();
+                            }
+                        </script>
+                    </div>
                     <div class="col-xs-6" style="text-align: center; padding-right: 0;" data-toggle="modal" data-target="#tipo_reproduccionModal">
                         <div style="text-align: center;">
                             <img src="images/boton_multimedia.png" style="width: 92%;">

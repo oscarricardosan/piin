@@ -84,9 +84,13 @@ function initializePage(){
             },
 
             play_audio: function(src){
+                App.audio_playing.stop();
                 App.audio_playing = new Media(UrlUtility_.asset(src),
                     function () {App.playing_audio= false;},
-                    function (err) { alert("playAudio():Audio Error: " + JSON.stringify(err)); }
+                    function (err) {
+                        alert("playAudio():Audio Error: " + JSON.stringify(err));
+                        App.playing_audio= true;
+                    }
                 );
                 App.audio_playing.play();
                 App.playing_audio= true;
