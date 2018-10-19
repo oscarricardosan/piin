@@ -29,6 +29,7 @@ function initializePage(){
             },
 
             scan_qr: function(){
+                alert('entre');
                 try{
                     cordova.plugins.barcodeScanner.scan(
                         function (result) {
