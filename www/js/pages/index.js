@@ -64,9 +64,9 @@ function initializePage(){
             },
             play_information: function(){
                 try{
-                    $.getJSON("resources_external/"+this.code.ubication+".json", function(data) {
+                    $.getJSON("resources_external/"+App.code.ubication+".json", function(data) {
                         alert(JSON.stringify(data));
-                        var point = data["point_"+this.code.point_name];
+                        var point = data["point_"+App.code.point_name];
                         alert(JSON.stringify(point));
                         alert(App.tipo_multimedia);
                         if(App.tipo_multimedia === App.tipo_multimedia_audio){
