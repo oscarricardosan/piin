@@ -63,13 +63,17 @@ function initializePage(){
                 this.play_information();
             },
             play_information: function(){
-                $.getJSON("../../resources_external/"+this.code.ubication+".json", function(data) {
-                    alert(JSON.stringify(data))
-                })
-                .error(function(jqXHR, textStatus, errorThrown) {
-                    alert("error " + textStatus);
-                    alert("incoming Text " + jqXHR.responseText);
-                })
+                try{
+                    $.getJSON("../../resources_external/"+this.code.ubication+".json", function(data) {
+                        alert(JSON.stringify(data))
+                    })
+                    .error(function(jqXHR, textStatus, errorThrown) {
+                        alert("error " + textStatus);
+                        alert("incoming Text " + jqXHR.responseText);
+                    })
+                }catch (e) {
+                    alert(e);
+                }
             }
         },
         filters: {
