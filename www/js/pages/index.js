@@ -26,6 +26,15 @@ function initializePage(){
             set_tipo_multimedia: function(multimedia){
                 this.tipo_multimedia= multimedia;
                 $('#tipo_reproduccionModal').modal('hide')
+            },
+
+            scan_qr: function(){
+                cloudSky.zBar.scan({
+                    text_title: "Leer código QR", // Android only
+                    text_instructions: "Por favor apuntar tu camara al código QR", // Android only
+                }, function(code){
+                    alert(code);
+                }, function(){});
             }
         },
         filters: {
@@ -52,15 +61,6 @@ function initializePage(){
     $(document).ready(function(){
 
         var url_params= UrlUtility_.getParams();
-
-        $('#scan_barcode_to_search').click(function(){
-            cloudSky.zBar.scan({
-                text_title: "Leer código de barras", // Android only
-                text_instructions: "Por favor apuntar tu camara al código de barras", // Android only
-            }, function(code){
-                App.number_search= code;
-            }, function(){});
-        });
 
 
     });
