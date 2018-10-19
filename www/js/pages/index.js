@@ -57,7 +57,7 @@ function initializePage(){
             },
             set_raw_code: function(raw_code){
                 var code_parts= raw_code.split(' ');
-                this.code.point_name= code_parts[1];
+                this.code.point_name= code_parts[0];
                 this.code.ubication= code_parts[1];
             }
         },
