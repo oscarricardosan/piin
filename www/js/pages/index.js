@@ -70,7 +70,9 @@ function initializePage(){
                         try{
                             var point = data["point_"+App.code.point_name];
                             var file= _.findWhere(point.multimedia, {"type": App.tipo_multimedia});
-
+                            alert(App.tipo_multimedia);
+                            alert(JSON.stringify(point.multimedia));
+                            alert(JSON.stringify(file));
                             switch(file.reproductive_type) {
                                 case App.tipo_multimedia_audio:
                                     App.play_audio(file.src);
