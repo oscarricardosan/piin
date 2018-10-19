@@ -2,10 +2,10 @@
   "point_1": {
     "multimedia":
       [
-        {"type": "audio", "src": "resources_external/BOY_tun_gob/1.mp3"},
-        {"type": "video", "src": ""},
-        {"type": "image", "src": ""},
-        {"type": "default", "src": ""}
+        {"type": "audio", "src": "resources_external/BOY_tun_gob/1.mp3", "reproductive_type": "audio"},
+        {"type": "video", "src": "", "reproductive_type": "video"},
+        {"type": "image", "src": "", "reproductive_type": "viewer"},
+        {"type": "default", "src": "", "reproductive_type": "audio"}
       ]
   }
 }
