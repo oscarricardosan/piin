@@ -4,20 +4,6 @@ function initializePage(){
     $(document).bind("mobileinit", function(){
         $.mobile.allowCrossDomainPages = true;
     });
-    // For the best user experience, make sure the user is ready to give your app
-    // camera access before you issue the prompt.
-
-    QRScanner.prepare(onDone); // prompt for access
-
-    function onDone(status){
-        if (status.authorized) {
-            // W00t, you have camera access and the scanner is initialized.
-        } else {
-            // The video preview will remain black, and scanning is disabled. We can
-            // try to ask the user to change their mind, but we'll have to send them
-            // to their device settings with `QRScanner.openSettings()`.
-        }
-    }
 
     App= new Vue({
         el: '#App',
@@ -43,22 +29,6 @@ function initializePage(){
             },
 
             scan_qr: function(){
-                try{
-                    QRScanner.show();
-                    // Start a scan. Scanning will continue until something is detected or
-                    // `QRScanner.cancelScan()` is called.
-                    QRScanner.scan(displayContents);
-
-                    function displayContents(text){
-                        // The scan completed, display the contents of the QR code:
-                        alert(JSON.stringify(text));
-                    }
-                }catch (e) {
-                    alert(e);
-                }
-
-
-                return;
                 cloudSky.zBar.scan({
                     text_title: "Leer código QR", // Android only
                     text_instructions: "Por favor apuntar tu camara al código QR", // Android only
