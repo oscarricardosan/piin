@@ -5,7 +5,7 @@
         {"type": "audio", "src": "resources_external/BOY_tun_gob/1.mp3", "reproductive_type": "audio"},
         {"type": "video", "src": "", "reproductive_type": "video"},
         {"type": "image", "src": "", "reproductive_type": "viewer"},
-        {"type": "default", "src": "", "reproductive_type": "audio"}
+        {"type": "default", "src": "resources_external/BOY_tun_gob/1.mp3", "reproductive_type": "audio"}
       ]
   }
 }
