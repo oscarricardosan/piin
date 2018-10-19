@@ -18,6 +18,9 @@
     },
     "cordova-plugin-qrscanner": {
       "PACKAGE_NAME": "savne.piin.lector"
+    },
+    "cordova-plugin-cszbar": {
+      "PACKAGE_NAME": "savne.piin.lector"
     }
   },
   "dependent_plugins": {}

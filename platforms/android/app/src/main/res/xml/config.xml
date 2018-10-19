@@ -32,4 +32,7 @@
     <feature name="QRScanner">
         <param name="android-package" value="com.bitpay.cordova.qrscanner.QRScanner" />
     </feature>
+    <feature name="CsZBar">
+        <param name="android-package" value="org.cloudsky.cordovaPlugins.ZBar" />
+    </feature>
 </widget>

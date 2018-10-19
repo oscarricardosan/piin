@@ -21,6 +21,14 @@ module.exports = [
     "clobbers": [
       "QRScanner"
     ]
+  },
+  {
+    "id": "cordova-plugin-cszbar.zBar",
+    "file": "plugins/cordova-plugin-cszbar/www/zbar.js",
+    "pluginId": "cordova-plugin-cszbar",
+    "clobbers": [
+      "cloudSky.zBar"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -29,7 +37,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-sqlite-evcore-extbuild-free": "0.9.8",
   "phonegap-nfc": "1.0.3",
-  "cordova-plugin-qrscanner": "2.6.0"
+  "cordova-plugin-qrscanner": "2.6.0",
+  "cordova-plugin-cszbar": "1.3.2"
 };
 // BOTTOM OF METADATA
 });
