@@ -7,5 +7,14 @@
         {"type": "imagen", "src": "resources_external/BOY_tun_gob/1.png", "reproductive_type": "imagen"},
         {"type": "default", "src": "resources_external/BOY_tun_gob/1.mp3", "reproductive_type": "audio"}
       ]
+  },
+  "point_2": {
+    "multimedia":
+      [
+        {"type": "audio", "src": "resources_external/BOY_tun_gob/2.mp3", "reproductive_type": "audio"},
+        {"type": "video", "src": "resources_external/BOY_tun_gob/2.mp4", "reproductive_type": "video"},
+        {"type": "imagen", "src": "resources_external/BOY_tun_gob/2.jpg", "reproductive_type": "imagen"},
+        {"type": "default", "src": "resources_external/BOY_tun_gob/2.mp3", "reproductive_type": "audio"}
+      ]
   }
 }
