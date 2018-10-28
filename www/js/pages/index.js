@@ -60,6 +60,8 @@ function initializePage(){
                 );
             },
             set_raw_code: function(raw_code){
+                raw_code= raw_code.replace('http://', '');
+                raw_code= raw_code.replace('https://', '');
                 var code_parts= raw_code.split(' ');
                 this.code.ubication= code_parts[0];
                 this.code.point_name= code_parts[1];
